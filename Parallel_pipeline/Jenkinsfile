@@ -30,12 +30,17 @@ pipeline{
         }
         stage("Test deploy"){
             parallel{
-                stage("GIT COMMIT"){
-                    git url: "https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"jenkins"
+                stage("GIT-COMMIT"){
+                    steps{
+                        git url: "https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"jenkins"
+                    }
 
                 }
                 stage("GIT"){
-                    git status
+                    steps{
+                        git status
+                    }
+                    
 
                 }
             }
