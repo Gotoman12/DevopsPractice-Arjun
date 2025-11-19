@@ -1,10 +1,9 @@
 pipeline{
-    agent none
+    agent any
     stages{
         stage("Build stage"){
            parallel{
                 stage("checkin stage"){
-                    agent any
                     steps{
                         sh '''
                         echo "first stage"
