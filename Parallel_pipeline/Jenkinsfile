@@ -1,10 +1,10 @@
 pipeline {
-    agent none
+    agent any
     stages{
         stage("First stage on window"){
             parallel{
                    stage("Checkin Code"){
-                    agent any
+                    
                     steps{
                         sh '''
                         echo "checking code"
@@ -12,7 +12,7 @@ pipeline {
                     }
                    }
                    stage("Checkin out"){
-                    agent any
+                    
                     steps{
                         sh '''
                         echo "checking out"
@@ -31,7 +31,7 @@ pipeline {
         stage("Test Code"){
             parallel{
                 stage("Test in S1T"){
-                    agent any
+                    
                     steps{
                         sh '''
                            echo "validate the application in S1T"
@@ -39,7 +39,7 @@ pipeline {
                     }
                 }
                 stage("Test in PPRD"){
-                    agent any
+                    
                     steps{
                         sh '''
                            echo "validate the application in PPRD"
@@ -47,7 +47,7 @@ pipeline {
                     }
                 }
                 stage("Test in PROD"){
-                    agent any
+                  
                     steps{
                         sh '''
                            echo "validate the application in PROD"
