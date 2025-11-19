@@ -26,5 +26,24 @@ pipeline {
                 '''
             }
         }
+        stage("Test Code"){
+            parallel{
+                stage("Test in S1T"){
+                    steps{
+                        sh '''
+                           echo "validate the application in S1T"
+                        '''
+                    }
+                }
+                stage("Test in PPRD"){
+                    steps{
+                        sh '''
+                           echo "validate the application in PPRD"
+                        '''
+                    }
+                }
+                
+            }
+        }
     }
 }
