@@ -36,6 +36,13 @@ pipeline{
                         '''
                     }
                 }
+                stage("dev test"){
+                    steps{
+                        sh '''
+                        echo "dev test"
+                        '''
+                    }
+                }
             }
 
         }
