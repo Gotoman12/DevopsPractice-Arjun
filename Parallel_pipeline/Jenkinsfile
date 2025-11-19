@@ -4,7 +4,6 @@ pipeline {
         stage("First stage on window"){
             parallel{
                    stage("Checkin Code"){
-                    
                     steps{
                         sh '''
                         echo "checking code"
@@ -12,7 +11,6 @@ pipeline {
                     }
                    }
                    stage("Checkin out"){
-                    
                     steps{
                         sh '''
                         echo "checking out"
@@ -31,7 +29,6 @@ pipeline {
         stage("Test Code"){
             parallel{
                 stage("Test in S1T"){
-                    
                     steps{
                         sh '''
                            echo "validate the application in S1T"
@@ -39,7 +36,6 @@ pipeline {
                     }
                 }
                 stage("Test in PPRD"){
-                    
                     steps{
                         sh '''
                            echo "validate the application in PPRD"
@@ -47,7 +43,6 @@ pipeline {
                     }
                 }
                 stage("Test in PROD"){
-                  
                     steps{
                         sh '''
                            echo "validate the application in PROD"
