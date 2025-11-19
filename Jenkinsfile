@@ -15,5 +15,10 @@ pipeline{
                   '''
             }
         }
+        stage("GIT CHECKOUT"){
+            steps{
+                git url: "https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch: 'Main'
+            }
+        }
     }
 }
