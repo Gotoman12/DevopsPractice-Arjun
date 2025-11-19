@@ -28,6 +28,20 @@ pipeline{
                         '''
             }
         }
+        stage("Test Build"){
+            parallel{
+                stage("Test s1t env"){
+                    sh '''
+                        echo "deploy build"
+                        '''
+                }
+                stage("Test pprd env"){
+                    sh '''
+                        echo "deploy build"
+                        '''
+                }
+            }
+        }
         
 }
 }
