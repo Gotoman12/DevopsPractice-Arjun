@@ -1,49 +1,23 @@
-pipeline{
+pipeline {
     agent any
     stages{
-        stage("Build stage"){
-           parallel{
-                stage("checkin stage"){
-                    steps{
-                        sh '''
-                        echo "first stage"
-                        '''
-                    }
-                }
-                stage("deploy stage"){
-                    steps{
-                        sh '''
-                        echo "deploy stage"
-                        '''
-                    }
-                }
-            
-           }
-
-        }
-        stage("Deploy Build"){
-            steps{
-                sh '''
-                        echo "deploy build"
-                        '''
-            }
-        }
-        stage("Test deploy"){
+        stage("First stage on window"){
             parallel{
-                stage("GIT-COMMIT"){
+                   stage("Checkin Code"){
                     steps{
-                        git url: "https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"jenkins"
+                        sh '''
+                        echo "checking code"
+                        '''
                     }
-
-                }
-                stage("GIT"){
+                   }
+                   stage("Checkin out"){
                     steps{
-                        git status
+                        sh '''
+                        echo "checking out"
+                        '''
                     }
-                    
-
-                }
+                   }
             }
         }
-  }
+    }
 }
