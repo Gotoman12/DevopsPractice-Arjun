@@ -21,6 +21,13 @@ pipeline{
            }
 
         }
+        stage("Deploy Build"){
+            steps{
+                sh '''
+                        echo "deploy build"
+                        '''
+            }
+        }
         
 }
 }
