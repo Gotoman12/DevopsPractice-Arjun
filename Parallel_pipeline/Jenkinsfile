@@ -22,8 +22,9 @@ pipeline{
 
         }
         stage("test stage"){
-            stages{
-                stage("checkin test"){
+            parallel{
+                  stages{
+                    stage("checkin test"){
                     steps{
                         sh ''' 
                         echo "checkin test"
@@ -45,6 +46,8 @@ pipeline{
                     }
                 }
             }
+            }
+            
 
         }
     }
