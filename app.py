@@ -1,13 +1,16 @@
 print("My first python script")
-# Simple addition script
 
-# Take input from the user
-num1 = float(input("Enter first number: "))
-num2 = float(input("Enter second number: "))
 
-# Add the two numbers
+import sys
+
+# Get numbers from command line arguments
+num1 = float(sys.argv[1])
+num2 = float(sys.argv[2])
+
+# Compute the sum
 result = num1 + num2
 
-# Display the result
-print("The sum is:", result)
+# Output the result
+print(result)
+
 
