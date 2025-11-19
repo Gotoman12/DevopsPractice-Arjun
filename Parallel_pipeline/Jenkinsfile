@@ -28,5 +28,14 @@ pipeline{
                         '''
             }
         }
+        stages{
+            stage("Test Deploy"){
+                steps{
+                    sh '''
+                    echo "test deploy"
+                    '''
+                }
+            }
+        }
   }
 }
