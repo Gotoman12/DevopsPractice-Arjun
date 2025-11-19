@@ -5,12 +5,16 @@ pipeline{
             stages{
                 stage("checkin stage"){
                     steps{
-                        sh echo "first stage"
+                        sh '''
+                        echo "first stage"
+                        '''
                     }
                 }
                 stage("deploy stage"){
                     steps{
-                        sh echo "first stage"
+                        sh '''
+                        echo "deploy stage"
+                        '''
                     }
                 }
             }
@@ -20,12 +24,16 @@ pipeline{
             stages{
                 stage("checkin test"){
                     steps{
-                        sh echo "first stage"
+                        sh ''' 
+                        echo "checkin test"
+                        '''
                     }
                 }
                 stage("deploy test"){
                     steps{
-                        sh echo "first stage"
+                        sh '''
+                        echo "deploy test"
+                        '''
                     }
                 }
             }
