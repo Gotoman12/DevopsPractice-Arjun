@@ -15,5 +15,12 @@ pipeline{
                 '''
             }
         }
+        stage("after-test"){
+            steps{
+                sh '''
+                echo "to test"
+                '''
+            }
+        }
     }
 }
