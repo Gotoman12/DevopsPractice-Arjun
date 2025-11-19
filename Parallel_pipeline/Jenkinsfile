@@ -3,11 +3,10 @@ pipeline {
     stages{
         stage("First stage on window"){
             parallel{
-                   stage("Checkin Code"){
+                   stage("GIT_COMMIT"){
                     steps{
-                        sh '''
-                        echo "checking code"
-                        '''
+                        git url: "https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"jenkins"
+                        
                     }
                    }
                    stage("Checkin out"){
