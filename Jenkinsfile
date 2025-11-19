@@ -1,23 +1,40 @@
 pipeline{
     agent any
-    stages{
-        stage("First stage"){
-            steps{
-                sh '''
-                  echo "hello arjun how are you"
-                  '''
+    parameters {
+        string(name:'ENV', defaultValue:"main",description:"This is my first parameter")
+    }
+    stages {
+        stage('Build-Stage') {
+            stages {
+                stage('checking_code') {
+                    steps {
+                        sh 'echo "Hello World"'
+                    }
+                }
+                stage('testing_code') {
+                    steps {
+                        sh 'echo "Hello World"'
+                    }
+                }
             }
         }
-        stage("Second Stage"){
-            steps{
-                sh '''
-                  python3 app.py 6 7
-                  '''
+
+        stage('Deploying to one more env') {
+            stages {
+                stage('deploy_to_dev') {
+                    steps {
+                        sh 'echo "testing in dev"'
+                    }
+                }
             }
         }
-        stage("GIT CHECKOUT"){
-            steps{
-                git url: "https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch: 'main'
+         stage('Deploying test env') {
+            stages {
+                stage('deploy_to_test') {
+                    steps {
+                        sh 'echo "testing in dev"'
+                    }
+                }
             }
         }
     }
