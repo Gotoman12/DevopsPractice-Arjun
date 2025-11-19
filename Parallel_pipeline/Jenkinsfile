@@ -21,34 +21,6 @@ pipeline{
            }
 
         }
-        stage("test stage"){
-            parallel{
-                  stages{
-                    stage("checkin test"){
-                    steps{
-                        sh ''' 
-                        echo "checkin test"
-                        '''
-                    }
-                }
-                stage("deploy test"){
-                    steps{
-                        sh '''
-                        echo "deploy test"
-                        '''
-                    }
-                }
-                stage("dev test"){
-                    steps{
-                        sh '''
-                        echo "dev test"
-                        '''
-                    }
-                }
-            }
-            }
-            
-
-        }
-    }
+        
+}
 }
