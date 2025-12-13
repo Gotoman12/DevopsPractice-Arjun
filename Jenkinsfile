@@ -8,7 +8,7 @@ pipeline{
         }
          stage("Checkout-successfully"){
             steps{
-                ssh '''
+                sh '''
                 echo "git workspace is created"
                 '''
             }
