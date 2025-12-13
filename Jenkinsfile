@@ -1,5 +1,3 @@
-#this is dev pipeline
-
 pipeline{
     agent any
     stages{
@@ -10,7 +8,7 @@ pipeline{
         }
          stage("Checkout-successfully"){
             steps{
-                ssh '''
+                sh '''
                 echo "git workspace is created"
                 '''
             }
