@@ -43,14 +43,14 @@ pipeline{
         }
         stage("Parallel Deployment"){
             parallel{
-                stage{
+                stage("Application hosted"){
                     steps("Application hosted"){
                         sh '''
                            echo "application is deployed"
                         '''
                     }
                 }
-				stage{
+				stage("Another parallel task"){
                     steps("Another parallel task"){
                         sh '''
                            echo "running notifications"
