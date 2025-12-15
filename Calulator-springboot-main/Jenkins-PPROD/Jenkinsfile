@@ -1,5 +1,5 @@
 pipeline{
-    agent { label 'pprod'}
+    agent { label 'dev'}
 
     tools {
         jdk "java-17"
