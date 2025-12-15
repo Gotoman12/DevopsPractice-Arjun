@@ -1,46 +1,41 @@
 pipeline{
     agent any
+    tools{
+        jdk "java-17"
+        maven "Maven"
+    }
     stages{
-        stage("GIT-CHECKOUT"){
+         stage("GIT CHECKOUT"){
             steps{
                 git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"dev"
             }
         }
-         stage("Checkout-successfully"){
+        stage("mvn java compile"){
             steps{
-                sh '''
-                echo "git workspace is created"
-                '''
+                dir("calculator-app"){
+                    sh '''
+                    mvn compile
+                    '''
+                }
             }
         }
-         stage("Build-stage"){
+        stage("mvn java test"){
             steps{
-                sh '''
-                echo "Build is successful"
+                dir("calculator-app"){
+                 sh '''
+                       mvn test
                 '''
+                }  
             }
         }
-          stage("Test-stage"){
+           stage("mvn java package"){
             steps{
-                sh '''
-                echo "Test is successful"
+                dir("calculator-app"){
+                 sh '''
+                       mvn package
                 '''
-            }
-        }
-         stage("Package-stage"){
-            steps{
-                sh '''
-                echo "Package is successful"
-                '''
-            }
-        }
-         stage("deploy-stage"){
-            steps{
-                sh '''
-                echo "deploy is successful"
-                '''
+                } 
             }
         }
     }
-    
 }
