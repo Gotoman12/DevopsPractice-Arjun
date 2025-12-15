@@ -6,59 +6,58 @@ pipeline{
                 git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"dev"
             }
         }
-         stage("Checkout-successfully"){
+        stage("Checkout-successfully"){
             steps{
                 sh '''
                 echo "git workspace is created"
                 '''
             }
         }
-         stage("Build-stage"){
+        stage("Build-stage"){
             steps{
                 sh '''
                 echo "Build is successful"
                 '''
             }
         }
-          stage("Test-stage"){
+        stage("Test-stage"){
             steps{
                 sh '''
                 echo "Test is successful"
                 '''
             }
         }
-         stage("Package-stage"){
+        stage("Package-stage"){
             steps{
                 sh '''
                 echo "Package is successful"
                 '''
             }
         }
-         stage("deploy-stage"){
+        stage("deploy-stage"){
             steps{
                 sh '''
                 echo "deploy is successful"
                 '''
             }
         }
-        stage{
+        stage("Parallel-Deployment") {  // Added name
             parallel{
-                stage{
-                    steps("Parallel Deloyment"){
+                stage("Application hosted") {  // Proper nested stage
+                    steps {  // Block syntax, not steps("...")
                         sh '''
-                           echo "application is deployed"
+                        echo "application is deployed"
                         '''
                     }
                 }
-                stage{
-                    steps("Another parallel task"){
+                stage("Another parallel task") {  // Optional second branch
+                    steps {
                         sh '''
-                           echo "running notifications"
+                        echo "running notifications"
                         '''
                     }
                 }
             }
         }
     }
-    
 }
