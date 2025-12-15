@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage("git checkout"){
             steps{
-                git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git",branch:"pprod"
+                git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git",branch:"pprd"
             }
         }
         stage("compile"){
