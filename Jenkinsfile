@@ -41,6 +41,17 @@ pipeline{
                 '''
             }
         }
+        stage{
+            parallel{
+                stage{
+                    steps("Application hosted"){
+                        sh '''
+                           echo "application is deployed"
+                        '''
+                    }
+                }
+            }
+        }
     }
     
 }
