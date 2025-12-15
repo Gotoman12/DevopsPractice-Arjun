@@ -13,6 +13,34 @@ pipeline{
                 '''
             }
         }
+         stage("Build-stage"){
+            steps{
+                sh '''
+                echo "Build is successful"
+                '''
+            }
+        }
+          stage("Test-stage"){
+            steps{
+                sh '''
+                echo "Test is successful"
+                '''
+            }
+        }
+         stage("Package-stage"){
+            steps{
+                sh '''
+                echo "Package is successful"
+                '''
+            }
+        }
+         stage("deploy-stage"){
+            steps{
+                sh '''
+                echo "deploy is successful"
+                '''
+            }
+        }
     }
     
 }
