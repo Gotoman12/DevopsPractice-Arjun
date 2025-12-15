@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters{
-        string(name:"ENV",defaultvalue:"pprd",description:"This is on pprd")
+        string(name:"ENV",defaultValue:"pprd",description:"This is on pprd")
     }
     stages{
         stage("GIT-CHECKOUT"){
