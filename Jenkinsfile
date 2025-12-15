@@ -1,65 +1,40 @@
 pipeline{
     agent any
-    parameters{
-        string(name:"ENV",defaultValue:"pprd",description:"This is on pprd")
+    tools{
+        jdk "java-17"
+        maven "Maven"
     }
     stages{
-        stage("GIT-CHECKOUT"){
+         stage("GIT CHECKOUT"){
             steps{
                 git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"dev"
             }
         }
-         stage("Checkout-successfully"){
+        stage("mvn java compile"){
             steps{
-                sh '''
-                echo "git workspace is created"
-                '''
-            }
-        }
-         stage("Build-stage"){
-            steps{
-                sh '''
-                echo "Build is successful"
-                '''
-            }
-        }
-          stage("Test-stage"){
-            steps{
-                sh '''
-                echo "Test is successful"
-                '''
-            }
-        }
-         stage("Package-stage"){
-            steps{
-                sh '''
-                echo "Package is successful"
-                '''
-            }
-        }
-         stage("deploy-stage"){
-            steps{
-                sh '''
-                echo "deploy is successful"
-                '''
-            }
-        }
-        stage("Parallel Deployment"){
-            parallel{
-                stage("Application hosted"){
-                    steps("Application hosted"){
-                        sh '''
-                           echo "application is deployed"
-                        '''
-                    }
+                dir("calculator-app"){
+                    sh '''
+                    mvn compile
+                    '''
                 }
-				stage("Another parallel task"){
-                    steps("Another parallel task"){
-                        sh '''
-                           echo "running notifications"
-                        '''
-                    }
-                }
+            }
+        }
+        stage("mvn java test"){
+            steps{
+                dir("calculator-app"){
+                 sh '''
+                       mvn test
+                '''
+                }  
+            }
+        }
+           stage("mvn java package"){
+            steps{
+                dir("calculator-app"){
+                 sh '''
+                       mvn package
+                '''
+                } 
             }
         }
     }
