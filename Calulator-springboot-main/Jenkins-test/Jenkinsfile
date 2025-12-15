@@ -1,6 +1,11 @@
 pipeline{
     agent { label 'pprod'}
 
+    tools {
+        jdk "java-17"
+        maven "Maven"
+    }
+
     stages{
         stage("git ckeckout"){
             steps{
