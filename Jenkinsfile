@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    parameters{
+        string(name:"ENV",defaultValue:"pprd",description:"This is on pprd")
+    }
     stages{
         stage("GIT-CHECKOUT"){
             steps{
@@ -41,6 +44,23 @@ pipeline{
                 '''
             }
         }
+        stage("Parallel Deployment"){
+            parallel{
+                stage("Application hosted"){
+                    steps("Application hosted"){
+                        sh '''
+                           echo "application is deployed"
+                        '''
+                    }
+                }
+				stage("Another parallel task"){
+                    steps("Another parallel task"){
+                        sh '''
+                           echo "running notifications"
+                        '''
+                    }
+                }
+            }
+        }
     }
-    
 }
