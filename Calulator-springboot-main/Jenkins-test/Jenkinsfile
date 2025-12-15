@@ -14,16 +14,19 @@ pipeline{
         }
         stage("complie"){
             steps{
+                dir('Calulator-springboot-main')
                 sh 'mvn compile'
             }
         }
          stage("test"){
             steps{
+                dir('Calulator-springboot-main')
                 sh 'mvn test'
             }
         }
          stage("package"){
             steps{
+                dir('Calulator-springboot-main')
                 sh 'mvn clean package'
             }
         }
