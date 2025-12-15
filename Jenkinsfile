@@ -1,65 +1,34 @@
 pipeline{
     agent any
-    parameters{
-        string(name:"ENV",defaultValue:"pprd",description:"This is on pprd")
+    tools{
+        jdk "java-17"
+        maven "Maven"
     }
     stages{
-        stage("GIT-CHECKOUT"){
+         stage("GIT CHECKOUT"){
             steps{
                 git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"dev"
             }
         }
-         stage("Checkout-successfully"){
+        stage("mvn compile"){
             steps{
                 sh '''
-                echo "git workspace is created"
+                       mvn complie
                 '''
             }
         }
-         stage("Build-stage"){
+        stage("mvn test"){
             steps{
                 sh '''
-                echo "Build is successful"
+                       mvn test
                 '''
             }
         }
-          stage("Test-stage"){
+           stage("mvn package"){
             steps{
                 sh '''
-                echo "Test is successful"
+                       mvn package
                 '''
-            }
-        }
-         stage("Package-stage"){
-            steps{
-                sh '''
-                echo "Package is successful"
-                '''
-            }
-        }
-         stage("deploy-stage"){
-            steps{
-                sh '''
-                echo "deploy is successful"
-                '''
-            }
-        }
-        stage("Parallel Deployment"){
-            parallel{
-                stage("Application hosted"){
-                    steps("Application hosted"){
-                        sh '''
-                           echo "application is deployed"
-                        '''
-                    }
-                }
-				stage("Another parallel task"){
-                    steps("Another parallel task"){
-                        sh '''
-                           echo "running notifications"
-                        '''
-                    }
-                }
             }
         }
     }
