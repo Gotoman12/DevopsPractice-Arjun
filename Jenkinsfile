@@ -21,16 +21,20 @@ pipeline{
         }
         stage("mvn test"){
             steps{
-                sh '''
+                dir("calculator-app"){
+                 sh '''
                        mvn test
                 '''
+                }  
             }
         }
            stage("mvn package"){
             steps{
-                sh '''
+                dir("calculator-app"){
+                 sh '''
                        mvn package
                 '''
+                } 
             }
         }
     }
