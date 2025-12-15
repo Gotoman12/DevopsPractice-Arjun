@@ -1,0 +1,37 @@
+pipeline{
+    agent { label 'pprod'}
+
+    tools{
+        jdk 'jave-17'
+        maven 'Maven'
+    }
+
+    stages{
+        stage("git checkout"){
+            steps{
+                git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git",branch:"pprod"
+            }
+        }
+        stage("compile"){
+            steps{
+               dir('Calulator-springboot-main'){
+                sh 'mvn compile'
+               }
+            }
+        }
+        stage("test"){
+            steps{
+               dir('Calulator-springboot-main'){
+                sh 'mvn test'
+               }
+            }
+        }
+         stage("package"){
+            steps{
+               dir('Calulator-springboot-main'){
+                sh 'mvn clean package'
+               }
+            }
+        }
+    }
+}
