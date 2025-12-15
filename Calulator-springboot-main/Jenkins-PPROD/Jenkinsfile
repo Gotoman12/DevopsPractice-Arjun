@@ -1,5 +1,5 @@
 pipeline{
-    agent { label 'pprod'}
+    agent any
 
     tools{
         jdk 'jave-17'
