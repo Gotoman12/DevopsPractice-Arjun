@@ -10,7 +10,7 @@ pipeline{
                 git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"dev"
             }
         }
-        stage("mvn compile"){
+        stage("mvn java compile"){
             steps{
                 dir("calculator-app"){
                     sh '''
@@ -19,7 +19,7 @@ pipeline{
                 }
             }
         }
-        stage("mvn test"){
+        stage("mvn java test"){
             steps{
                 dir("calculator-app"){
                  sh '''
@@ -28,7 +28,7 @@ pipeline{
                 }  
             }
         }
-           stage("mvn package"){
+           stage("mvn java package"){
             steps{
                 dir("calculator-app"){
                  sh '''
