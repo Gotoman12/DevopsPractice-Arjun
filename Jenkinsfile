@@ -12,9 +12,11 @@ pipeline{
         }
         stage("mvn compile"){
             steps{
-                sh '''
-                       mvn compile
-                '''
+                dir("calculator-app"){
+                    sh '''
+                    mvn compile
+                    '''
+                }
             }
         }
         stage("mvn test"){
