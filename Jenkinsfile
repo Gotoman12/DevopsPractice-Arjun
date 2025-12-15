@@ -41,7 +41,7 @@ pipeline{
                 '''
             }
         }
-        stage{
+        stage("Parallel Deployment"){
             parallel{
                 stage{
                     steps("Application hosted"){
