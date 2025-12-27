@@ -1,10 +1,10 @@
 pipeline{
     agent any
 
-    environment{
-        IMAGE_NAME = "arjunckm/reactapp:${BUILD_NUMBER}"
-        
-    }
+   environment {
+        BACKEND_IMAGE = "arjunckm/springboot-backend:${BUILD_NUMBER}"
+        FRONTEND_IMAGE = "arjunckm/react-frontend:${BUILD_NUMBER}"
+   }
 
     stages{
         stage("GIT-CKECKOUT"){
@@ -12,20 +12,41 @@ pipeline{
                 git url:"https://github.com/Gotoman12/DevopsPractice-Arjun.git", branch:"React-SpringBoot"
             }
         }
+        // Backend docker deployment to container
         stage("docker-build"){
             steps{
                  dir('backend-springboot'){
-                    sh 'docker build -t ${IMAGE_NAME} .'
+                    sh 'docker build -t ${BACKEND_IMAGE} .'
                  }
             }
         }
         stage("docker-run"){
             steps{
                 dir('backend-springboot'){
-                      sh 'docker run -it -d --name backapp -p 5000:8085 ${IMAGE_NAME}'
+                   sh 'docker kill backapp'
+                    sh 'docker rm backapp'
+                    sh 'docker run -it -d --name backapp -p 5000:8085 ${BACKEND_IMAGE}'
                 }
             }
         }
+        // Frontend docker deployment to container
+        stage("frontend-build"){
+            steps{
+                 dir('frontend-react'){
+                    sh 'docker build -t ${FRONTEND_IMAGE} .'
+                 }
+            }
+        }
+        stage("frontend-run"){
+            steps{
+                dir('frontend-react'){
+                    docker kill backapp
+                    docker rm backapp
+                      sh 'docker run -it -d --name backapp -p 5002:3000 ${FRONTEND_IMAGE}'
+                }
+            }
+        }
+
         stage("docker-login"){
             steps{
                 script{
@@ -37,7 +58,8 @@ pipeline{
         }
         stage("docker-push"){
             steps{
-                sh 'docker push ${IMAGE_NAME}'
+                sh 'docker push ${BACKEND_IMAGE}'
+                sh 'docker push ${FRONTEND_IMAGE}'
             }
         }
     }
