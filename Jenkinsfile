@@ -13,15 +13,17 @@ pipeline{
             }
         }
         stage("docker-build"){
-            dir('backend-springboot')
             steps{
-                sh 'docker build -t ${IMAGE_NAME} .'
+                 dir('backend-springboot'){
+                    sh 'docker build -t ${IMAGE_NAME} .'
+                 }
             }
         }
         stage("docker-run"){
             steps{
-                dir('backend-springboot')
-                sh 'docker run -it -d --name backapp -p 5000:8085 ${IMAGE_NAME}'
+                dir('backend-springboot'){
+                      sh 'docker run -it -d --name backapp -p 5000:8085 ${IMAGE_NAME}'
+                }
             }
         }
         stage("docker-login"){
