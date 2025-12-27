@@ -40,7 +40,8 @@ pipeline{
         stage("frontend-run"){
             steps{
                 dir('frontend-react'){
-                      sh 'docker run -it -d --name frontapp -p 5002:3000 ${FRONTEND_IMAGE}'
+                      sh "docker rm -f frontapp || true"
+                      sh 'docker run -it -d --name frontapp -p 3000:80 ${FRONTEND_IMAGE}'
                 }
             }
         }
