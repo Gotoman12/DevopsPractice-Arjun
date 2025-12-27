@@ -5,6 +5,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
+# 🔑 FIX EXECUTION PERMISSION
+RUN chmod +x node_modules/.bin/react-scripts
+
 COPY . .
 RUN npm run build
 
