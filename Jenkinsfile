@@ -13,8 +13,8 @@ pipeline{
             }
         }
         stage("docker-build"){
+            dir('backend-springboot')
             steps{
-                dir('backend-springboot')
                 sh 'docker build -t ${IMAGE_NAME} .'
             }
         }
