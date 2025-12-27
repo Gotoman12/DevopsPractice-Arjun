@@ -23,8 +23,8 @@ pipeline{
         stage("docker-run"){
             steps{
                 dir('backend-springboot'){
-                   sh 'docker kill backapp'
-                    sh 'docker rm backapp'
+                   sh 'docker kill backapp || true'
+                    sh 'docker rm backapp || true'
                     sh 'docker run -it -d --name backapp -p 5000:8085 ${BACKEND_IMAGE}'
                 }
             }
@@ -40,9 +40,7 @@ pipeline{
         stage("frontend-run"){
             steps{
                 dir('frontend-react'){
-                    docker kill backapp
-                    docker rm backapp
-                      sh 'docker run -it -d --name backapp -p 5002:3000 ${FRONTEND_IMAGE}'
+                      sh 'docker run -it -d --name frontapp -p 5002:3000 ${FRONTEND_IMAGE}'
                 }
             }
         }
