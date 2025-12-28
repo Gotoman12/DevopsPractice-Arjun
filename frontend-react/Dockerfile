@@ -9,7 +9,7 @@ RUN npm install
 RUN chmod 777 node_modules/.bin/react-scripts
 
 COPY . .
-RUN npm start
+RUN npm run build
 
 # -------- Runtime Stage --------
 FROM nginx:alpine
