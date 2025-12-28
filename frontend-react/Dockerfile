@@ -6,10 +6,10 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 # 🔑 FIX EXECUTION PERMISSION
-RUN chmod +x node_modules/.bin/react-scripts
+RUN chmod 777 node_modules/.bin/react-scripts
 
 COPY . .
-RUN npm run build
+RUN npm start
 
 # -------- Runtime Stage --------
 FROM nginx:alpine
